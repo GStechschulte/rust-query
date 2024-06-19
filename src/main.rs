@@ -1,16 +1,12 @@
-use arrow::datatypes::{Int8Type, Int16Type, Int32Type, Int64Type, Float32Type, Float64Type, Utf8Type};
+use arrow::array::Int32Array;
+use rust_query::arrow_types;
 
-
-struct ArrowTypes {
-    int8: Int8Type,
-    int16: Int16Type,
-    int32: Int32Type,
-    int64: Int64Type,
-    float32: Float32Type,
-    float64: Float64Type,
-    utf8: Utf8Type,
-}
-
+// Use our rust-query library
 fn main() {
-    print!("Arrow Types\n");
+
+    let a = Int32Array::from(vec![10]);
+    let b = arrow_types::Int8Type::from(vec![10]);
+
+    println!("{:?}", a);
+    println!("{:?}", b);
 }
