@@ -5,3 +5,5 @@ edition = "2021"
 
 [dependencies]
 arrow = "52.0.0"
+arrow-schema = "52.0.0"
+arrow-csv = "52.0.0"
