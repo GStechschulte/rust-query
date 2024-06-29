@@ -1,12 +1,15 @@
 /// The first step in building a query engine is to choose a type system to
 /// represent the different types of data that the query engine will be
 /// processing.
-/// 
+///
 /// Apache Arrow is used as the basis for the type system in this project and
 /// the types defined in this module are aliases for Arrow array types.
+use arrow::array::{
+    Float32Array, Float64Array, Int16Array, Int32Array, Int64Array, Int8Array, StringArray,
+    UInt16Array, UInt32Array, UInt64Array, UInt8Array,
+};
 
-use arrow::array::{Int8Array, Int16Array, Int32Array, Int64Array, UInt8Array, UInt16Array, UInt32Array, UInt64Array, Float32Array, Float64Array, StringArray};
-
+// TODO: Use an enum here
 pub type Int8Type = Int8Array;
 pub type Int16Type = Int16Array;
 pub type Int32Type = Int32Array;
