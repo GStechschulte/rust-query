@@ -2,16 +2,12 @@ use std::fs::File;
 use std::path::Path;
 use std::sync::Arc;
 
-use arrow::array::{ArrayRef, BooleanArray, Int16Array, Int32Array, Int64Array, StringArray};
-use arrow::compute::filter;
-use arrow_csv::ReaderBuilder;
-// use arrow::csv::ReaderBuilder;
-// use arrow::datatypes::{DataType, Field, Schema};
-use arrow::error::Result;
-// use arrow::record_batch::RecordBatch;
 use arrow::array::RecordBatch;
+use arrow::array::{ArrayRef, BooleanArray, Int16Array, Int64Array, StringArray};
+use arrow::compute::filter;
+use arrow::error::Result;
+use arrow_csv::ReaderBuilder;
 use arrow_schema::*;
-use rust_query::arrow_types;
 
 fn filter_by_group(col_idx: usize, group: i64, batch: &RecordBatch) -> Result<RecordBatch> {
     let filter_array = batch
@@ -39,12 +35,6 @@ fn filter_by_group(col_idx: usize, group: i64, batch: &RecordBatch) -> Result<Re
 
 // Use our rust-query library
 fn main() {
-    let a = Int32Array::from(vec![10]);
-    let b = arrow_types::Int8Type::from(vec![10]);
-
-    println!("{:?}", a);
-    println!("{:?}", b);
-
     // Code for the query `SELECT * FROM employee WHERE state = 'CO'`
     // against a CSV file containing the columns `id`, `first_name`,
     // `last_name`, `state`, `job_title`, and `salary`
@@ -110,6 +100,9 @@ fn main() {
     let my_col = batch_reader.column(5);
     let c = filter(&my_col, &filter_array).unwrap();
     println!("{:?}", c);
+
+    let projection: Vec<&str> = vec!["Testing"];
+    println!("{:?}", projection);
 
     // let filter_array = batch
     //     .column(col_idx)
